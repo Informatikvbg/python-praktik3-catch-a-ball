@@ -1,8 +1,10 @@
-# Чтобы определить, попали ли мы в круг, 
-# нужно знать его координаты, радиус круга и координаты мыши в момент щелчка. Координаты мыши легко получить через event.pos. 
-# Попробуем получить координаты круга:
+#  Осталось проверить, не лежит ли точка (event.x, event.y) дальше,
+# чем r от точки (x,y).
+# Для этого, с помощью теоремы Пифагора мы найдем расстояние между двумя точками
+# и сравним с радиусом круга.
 
 import pygame
+from math import sqrt
 from pygame.draw import *
 from random import randint
 pygame.init()
@@ -19,14 +21,8 @@ CYAN = (0, 255, 255)
 BLACK = (0, 0, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
-def new_ball():
-# Использование global – это не самое лучшее решение. 
-# Для данной задачи больше подходит использование ООП (объектно-ориентированного подхода), 
-# но об этом позже. А пока – будем использовать global.
 
-# global означает, что переменные будут считаться глобальными (а не локальными), 
-# т.е. их значение сохранится и после завершения работы функции, 
-# а не будет уничтожено, как это произойдет со всеми локальными переменными.
+def new_ball():
     global x, y, r
     '''рисует новый шарик '''
     x = randint(100, 1100)
@@ -34,9 +30,18 @@ def new_ball():
     r = randint(10, 100)
     color = COLORS[randint(0, 5)]
     circle(screen, color, (x, y), r)
-    
+
+
 def click(event):
-    print(x, y, r)
+    print(x, y)
+    # координаты клика мыши
+    (mx, my) = pygame.mouse.get_pos()
+    print(mx, my)
+    # расчет расстояния от точки клика до центра шара
+    s = sqrt((mx-x)**2+(my-y)**2)
+    if s < r:
+        screen.fill(BLUE)
+
 
 pygame.display.update()
 clock = pygame.time.Clock()
@@ -48,7 +53,7 @@ while not finished:
         if event.type == pygame.QUIT:
             finished = True
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            click(event)  
+            click(event)
 
     new_ball()
     pygame.display.update()
