@@ -1,4 +1,5 @@
-# Вначале создадим появляющиеся шарики:
+# Теперь добавим обработку щелчка мыши.
+# Для начала выведем что-нибудь в консоль:
 import pygame
 from pygame.draw import *
 from random import randint
@@ -33,6 +34,9 @@ while not finished:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             finished = True
+# что-нибудь в консоль:
+           elif event.type == pygame.MOUSEBUTTONDOWN:
+            print('Click!')  
 
     new_ball()
     pygame.display.update()
