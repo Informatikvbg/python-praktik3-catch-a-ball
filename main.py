@@ -35,6 +35,7 @@ while not finished:
         if event.type == pygame.QUIT:
             finished = True
 # что-нибудь в консоль:
+# При каждом щелчке в консоли будет появляться надпись «click».
            elif event.type == pygame.MOUSEBUTTONDOWN:
             print('Click!')  
 
