@@ -5,12 +5,12 @@
 
 import pygame
 from math import sqrt
-from pygame.draw import *
+from pygame.draw import * # type: ignore
 from random import randint
 pygame.init()
 
 FPS = 2
-screen = pygame.display.set_mode((1200, 900))
+screen = pygame.display.set_mode((1200, 800))
 
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)

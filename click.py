@@ -1,12 +1,13 @@
 import pygame
-from pygame.draw import *
+from pygame.draw import * # type: ignore
 pygame.init()
 
 FPS = 30
 screen = pygame.display.set_mode((400, 400))
-
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
+GREY=(187,187,187)
+screen.fill(GREY)
 
 pygame.display.update()
 clock = pygame.time.Clock()
