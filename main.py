@@ -1,5 +1,29 @@
-# Теперь добавим обработку щелчка мыши.
-# Для начала выведем что-нибудь в консоль:
+# Чтобы определить, попали ли мы в круг, 
+# нужно знать его координаты, радиус круга и координаты мыши в момент щелчка. Координаты мыши легко получить через event.pos. 
+# Попробуем получить координаты круга:
+
+# def click(event):
+    # print(x, y, r)
+    
+# Не забудьте вставить вызов этой функции click(event) в место диспетчеризации!
+
+# И всё равно такой способ не прошел. Почему? 
+# В чем суть появившегося сообщения об ошибке, что оно означает?
+
+# Исправим ситуацию: 
+
+# def new_ball():
+#     global x, y, r
+#     x = randint(100,700)
+#     y = randint(100,500)
+#     r = randint(30,50)
+#     color = COLORS[randint(0, 5)]
+#     circle(screen, color, (x, y), r)
+
+# def click(event):
+#     print(x, y, r)
+    
+    
 import pygame
 from pygame.draw import *
 from random import randint
@@ -24,6 +48,9 @@ def new_ball():
     r = randint(10, 100)
     color = COLORS[randint(0, 5)]
     circle(screen, color, (x, y), r)
+    
+def click(event):
+    print(x, y, r)
 
 pygame.display.update()
 clock = pygame.time.Clock()
@@ -36,7 +63,7 @@ while not finished:
             finished = True
 # что-нибудь в консоль:
 # При каждом щелчке в консоли будет появляться надпись «click».
-           elif event.type == pygame.MOUSEBUTTONDOWN:
+        elif event.type == pygame.MOUSEBUTTONDOWN:
             print('Click!')  
 
     new_ball()
